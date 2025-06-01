@@ -10,7 +10,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 const gui = new GUI()
 
 const parameters = {
-    materialColor: '#fff'
+    materialColor: '#fff', 
 }
 
 gui
@@ -42,6 +42,33 @@ sky.material.uniforms['rayleigh'].value = 5
 sky.material.uniforms['mieCoefficient'].value = 0.4
 sky.material.uniforms['mieDirectionalG'].value = 0.95
 sky.material.uniforms['sunPosition'].value.set(0.3, -0.038, -0.95)
+
+/**
+ * Sizes
+ */
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    isMobile: window.innerWidth < 768, 
+    isTablet: window.innerWidth < 1000
+}
+
+window.addEventListener('resize', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+    sizes.isMobile = window.innerWidth < 768
+    sizes.isTablet = window.innerWidth < 1000
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
 
 
 /**
@@ -101,15 +128,12 @@ const mesh1 = new THREE.Mesh(
     new THREE.TorusKnotGeometry(12, 2.33, 37, 6, 5, 6),
     glassMaterial
 )
-mesh1.scale.set(0.08, 0.08, 0.08)
-
 
 const mesh2 = new THREE.Mesh(
     new THREE.TorusKnotGeometry(7.62, 2.1, 28, 5, 6, 5),
     toonMaterial
 )
 mesh2.material.color.set(parameters.materialColor)
-mesh2.scale.set(0.1, 0.1, 0.1)
 
 // Fox
 const gltfLoader = new GLTFLoader()
@@ -121,8 +145,14 @@ let fox = gltfLoader.load(
         const aciton = mixer.clipAction(gltf.animations[1])
 
         aciton.play()
-        gltf.scene.scale.set(0.02, 0.02, 0.02)
-        gltf.scene.position.set(0, (- objectsDistance * 2) + 0.2, 0)
+        if (sizes.isMobile) {
+            gltf.scene.scale.set(0.01, 0.01, 0.01)
+            gltf.scene.position.set(0, (- objectsDistance * 2) + 1.7, 0)
+        }
+        else {
+            gltf.scene.scale.set(0.02, 0.02, 0.02)
+            gltf.scene.position.set(0, (- objectsDistance * 2) + 0.2, 0)
+        }
         gltf.scene.rotation.set(0, Math.PI / 2, 0)
         scene.add(gltf.scene)
     }
@@ -133,46 +163,58 @@ const sbtBox = new THREE.Mesh(
     new THREE.BoxGeometry(3, 3, 3), 
     sbtMaterial
 )
-sbtBox.scale.set(0.4, 0.4, 0.4)
 
 // Cami APP
 const camiBox = new THREE.Mesh(
     new THREE.BoxGeometry(3, 3, 3), 
     camiMaterial
 )
-camiBox.scale.set(0.4, 0.4, 0.4)
 
 // TPrototype
 const tProtBox = new THREE.Mesh(
     new THREE.BoxGeometry(3, 3, 3), 
     tProtMaterial
 )
-tProtBox.scale.set(0.4, 0.4, 0.4)
 
+// Mesh Scaling
+if (sizes.isMobile) {
+    mesh1.scale.set(0.03, 0.03, 0.03)
+    mesh2.scale.set(0.05, 0.05, 0.05)
+    sbtBox.scale.set(0.15, 0.15, 0.15)
+    camiBox.scale.set(0.15, 0.15, 0.15)
+    tProtBox.scale.set(0.15, 0.15, 0.15)
+}
+else {
+    mesh1.scale.set(0.08, 0.08, 0.08)
+    mesh2.scale.set(0.1, 0.1, 0.1)
+    sbtBox.scale.set(0.4, 0.4, 0.4)
+    camiBox.scale.set(0.4, 0.4, 0.4)
+    tProtBox.scale.set(0.4, 0.4, 0.4)
+}
 
-mesh1.position.y = - objectsDistance * 0
-mesh2.position.y = - objectsDistance * 1
-sbtBox.position.y = - objectsDistance * 3
-camiBox.position.y = - objectsDistance * 4
-tProtBox.position.y = - objectsDistance * 5
+// Mesh Positioning
+mesh1.position.y = sizes.isMobile ? - objectsDistance * 0 - 1.05 : - objectsDistance * 0
+mesh2.position.y = sizes.isMobile ? - objectsDistance * 1 - 0.2 : - objectsDistance * 1
+sbtBox.position.y = sizes.isMobile ? - objectsDistance * 1.69 : - objectsDistance * 3
+camiBox.position.y = sizes.isMobile ? - objectsDistance * 2.49 : - objectsDistance * 4
+tProtBox.position.y = sizes.isMobile ? - objectsDistance * 3.27 : - objectsDistance * 5
 
-mesh1.position.x = 2
-mesh2.position.x = -2
-sbtBox.position.x = -2
-camiBox.position.x = -2
-tProtBox.position.x = -2
+mesh1.position.x = sizes.isMobile ? 0 : 2
+mesh2.position.x = sizes.isMobile ? 0 : -2
+sbtBox.position.x = sizes.isMobile ? 0 : -2
+camiBox.position.x = sizes.isMobile ? 0 : -2
+tProtBox.position.x = sizes.isMobile ? 0 : -2
 
 
 const sectionMeshes = [ mesh1, mesh2, fox, sbtBox, camiBox, tProtBox]
 
 // Fixed top and bottom example:
 // mesh1.position.y = 2
-// mesh1.scale.set(0.5, 0.5, 0.5)
+// mesh1.scale.set(0.1, 0.1, 0.1)
 
-// mesh2.visible = false
 
-// mesh3.position.y = -2
-// mesh3.scale.set(0.5, 0.5, 0.5)
+// mesh2.position.y = -2
+// mesh2.scale.set(0.1, 0.1, 0.1)
 
 scene.add(mesh1, mesh2, sbtBox, camiBox, tProtBox)
 
@@ -225,28 +267,6 @@ scene.add(directionalLight)
 const ambientLight = new THREE.AmbientLight("white", 1)
 scene.add(ambientLight)
 
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
-
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
-
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
-
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
 
 /**
  * Camera
