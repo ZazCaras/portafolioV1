@@ -33,7 +33,7 @@ h1, h2 {
     text-transform: uppercase;
 }
 
-p, span, small {
+p, span, small, a {
     font-family: Supreme-Regular;
 }
 
@@ -139,7 +139,7 @@ p, span, small {
 
 .j-skills-row {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     flex-wrap: wrap;
     padding-inline: 10%;
@@ -171,7 +171,7 @@ p, span, small {
 }
 
 .job-h {
-    font-size: 50px;
+    font-size: 45px;
     padding-inline: 10%;
 }
 
@@ -186,6 +186,34 @@ p, span, small {
     justify-content: center;
     padding-inline: 10%;
     margin-bottom: 10px;
+}
+
+.job-link-cont {
+    display: flex;
+    justify-content: left;
+    padding-inline: 10%;
+    margin-block: 10px;
+}
+
+.nda-link {
+    font-size: 14px;
+    border: solid 2px #ff5729;
+    padding: 6px 13px;
+    border-radius: 5px;
+    background-color: #ff572941;
+    margin: 0 10px;
+}
+
+.non-nda-link {
+    font-size: 14px;
+    border: solid 2px #8ccfff;
+    padding: 6px 13px;
+    border-radius: 5px;
+    background-color: #8ccfff3f;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;;
 }
 
 .bouncy { display: none;}
@@ -206,6 +234,9 @@ p, span, small {
         white-space: nowrap;
         will-change: box-shadow,transform;
         text-align: center;
+    }
+    .j-skills-row, .job-link-cont {
+        justify-content: center;
     }
     .j-individual-skill {
         font-size: 10px;

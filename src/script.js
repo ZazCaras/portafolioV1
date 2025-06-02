@@ -201,9 +201,9 @@ else {
 // Mesh Positioning
 mesh1.position.y = sizes.isMobile ? - objectsDistance * 0 - 1.3 : - objectsDistance * 0
 mesh2.position.y = sizes.isMobile ? - objectsDistance * 1 - 1.4 : - objectsDistance * 1
-sbtBox.position.y = sizes.isMobile ? - objectsDistance * 3 + 1.4 : - objectsDistance * 3
-camiBox.position.y = sizes.isMobile ? - objectsDistance * 4 + 1.4 : - objectsDistance * 4
-tProtBox.position.y = sizes.isMobile ? - objectsDistance * 5 + 1.4: - objectsDistance * 5
+sbtBox.position.y = sizes.isMobile ? - objectsDistance * 3 + 1.5 : - objectsDistance * 3
+camiBox.position.y = sizes.isMobile ? - objectsDistance * 4 + 1.5 : - objectsDistance * 4
+tProtBox.position.y = sizes.isMobile ? - objectsDistance * 5 + 1.5: - objectsDistance * 5
 
 mesh1.position.x = sizes.isMobile ? 0 : 2
 mesh2.position.x = sizes.isMobile ? 0 : -2
