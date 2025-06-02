@@ -7,17 +7,24 @@
     padding: 0;
 }
 
-html {
-    background: #1e1a20;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    -webkit-overflow-scroling: touch;
 }
 
 
 .webgl
 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  z-index: -1;
+  display: block;
+  pointer-events: none;
 }
 
 h1, h2 {
@@ -250,16 +257,17 @@ p, span {
         font-size: 30px;
     }
     .job-p {
-        font-size: 12px
+        font-size: 12px;
+        text-align: center;
     }
     .sm-0 {
         width: 0px !important;
         height: 0px;
         flex: 0;
     }
-    .section {
-        height: 75vh;
-    }
+    /* .section {
+        height: 80vh;
+    } */
 }
 
 @media (max-width: 576px) {

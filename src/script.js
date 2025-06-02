@@ -68,8 +68,14 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    setViewportHeightUnit()
 })
 
+function setViewportHeightUnit() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
 
 /**
  * Objects
@@ -147,7 +153,7 @@ let fox = gltfLoader.load(
         aciton.play()
         if (sizes.isMobile) {
             gltf.scene.scale.set(0.01, 0.01, 0.01)
-            gltf.scene.position.set(0, (- objectsDistance * 2) + 1.7, 0)
+            gltf.scene.position.set(0, (- objectsDistance * 2) + 0.2, 0)
         }
         else {
             gltf.scene.scale.set(0.02, 0.02, 0.02)
@@ -193,11 +199,11 @@ else {
 }
 
 // Mesh Positioning
-mesh1.position.y = sizes.isMobile ? - objectsDistance * 0 - 1.05 : - objectsDistance * 0
-mesh2.position.y = sizes.isMobile ? - objectsDistance * 1 - 0.2 : - objectsDistance * 1
-sbtBox.position.y = sizes.isMobile ? - objectsDistance * 1.69 : - objectsDistance * 3
-camiBox.position.y = sizes.isMobile ? - objectsDistance * 2.49 : - objectsDistance * 4
-tProtBox.position.y = sizes.isMobile ? - objectsDistance * 3.27 : - objectsDistance * 5
+mesh1.position.y = sizes.isMobile ? - objectsDistance * 0 - 1.3 : - objectsDistance * 0
+mesh2.position.y = sizes.isMobile ? - objectsDistance * 1 - 1.4 : - objectsDistance * 1
+sbtBox.position.y = sizes.isMobile ? - objectsDistance * 3 + 1.4 : - objectsDistance * 3
+camiBox.position.y = sizes.isMobile ? - objectsDistance * 4 + 1.4 : - objectsDistance * 4
+tProtBox.position.y = sizes.isMobile ? - objectsDistance * 5 + 1.4: - objectsDistance * 5
 
 mesh1.position.x = sizes.isMobile ? 0 : 2
 mesh2.position.x = sizes.isMobile ? 0 : -2
@@ -297,6 +303,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 let scrollY = window.scrollY
 let currentSection = 0
 window.addEventListener('scroll', () => {
+    console.log(currentSection)
     scrollY = window.scrollY
 
     const newSection = Math.round(scrollY / sizes.height)
