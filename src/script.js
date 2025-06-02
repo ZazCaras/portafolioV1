@@ -66,7 +66,7 @@ window.addEventListener('resize', () =>
     camera.updateProjectionMatrix()
 
     // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
+    renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
     setViewportHeightUnit()
@@ -303,7 +303,6 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 let scrollY = window.scrollY
 let currentSection = 0
 window.addEventListener('scroll', () => {
-    console.log(currentSection)
     scrollY = window.scrollY
 
     const newSection = Math.round(scrollY / sizes.height)
