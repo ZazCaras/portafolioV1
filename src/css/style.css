@@ -181,7 +181,7 @@ p, span, small, a {
 
 .job-p {
     text-align: left;
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     padding-inline: 10%;
@@ -198,23 +198,81 @@ p, span, small, a {
 .nda-link {
     font-size: 14px;
     border: solid 2px #ff5729;
-    padding: 6px 13px;
+    padding: 6px 9px;
     border-radius: 5px;
     background-color: #ff572941;
     margin: 0 10px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow .15s,transform .15s;
+    box-shadow: 1px 1px 3px #ff5729a8;
 }
+
+.nda-link:hover, .nda-link:focus {
+    box-shadow: 2px 2px 3px #ff5729;
+}
+
+.nda-link:hover {
+  transform: translateY(2px);
+}
+
 
 .non-nda-link {
     font-size: 14px;
     border: solid 2px #8ccfff;
-    padding: 6px 13px;
+    padding: 6px 8px;
     border-radius: 5px;
     background-color: #8ccfff3f;
     margin: 0 10px;
     cursor: pointer;
     color: #fff;
     text-decoration: none;;
+    display: flex;
+    transition: box-shadow .15s,transform .15s;
+    box-shadow: 1px 1px 3px #8ccfffa8;
 }
+
+.non-nda-link:hover, .non-nda-link:focus {
+    box-shadow: 2px 2px 3px #8ccfff;
+}
+
+.non-nda-link:hover {
+  transform: translateY(2px);
+}
+
+.gh-logo::before {
+    background-image: url(/static/logos/github.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    display: flex;
+    width: 25px;
+    height: 20px;
+    content: "";
+}
+
+.website-link {
+    font-size: 14px;
+    border: solid 2px #ffb28d;
+    padding: 6px 8px;
+    border-radius: 5px;
+    background-color: #ffb28d47;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;;
+    display: flex;
+    transition: box-shadow .15s,transform .15s;
+    box-shadow: 1px 1px 3px #ffb28da8;
+}
+
+.website-link:hover, .website-link:focus {
+    box-shadow: 2px 2px 3px #ffb28d;
+}
+
+.website-link:hover {
+  transform: translateY(2px);
+}
+
 
 .bouncy { display: none;}
 
