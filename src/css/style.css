@@ -40,8 +40,17 @@ p, span, small, a {
 .top-right-logo {
     position: fixed;
     top: 10px;
-    right: 20px;
+    right: 55px;
     width: 20px;  
+    height: auto;
+    z-index: 10; 
+}
+
+.top-right-logo2 {
+    position: fixed;
+    top: 9px;
+    right: 20px;
+    width: 25px;  
     height: auto;
     z-index: 10; 
 }
