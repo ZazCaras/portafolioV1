@@ -89,7 +89,7 @@ const camiTexture = textureLoader.load('/logos/cami-app.jpg');
 camiTexture.colorSpace = THREE.SRGBColorSpace
 const tprotTexture = textureLoader.load('/logos/tprototype.jpeg');
 tprotTexture.colorSpace = THREE.SRGBColorSpace
-const tedxTexture = textureLoader.load('/logos/tedx.png');
+const tedxTexture = textureLoader.load('/logos/tedx-logo.jpg');
 tedxTexture.colorSpace = THREE.SRGBColorSpace
 
 gradientTexture.colorSpace = THREE.SRGBColorSpace

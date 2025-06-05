@@ -282,6 +282,29 @@ p, span, small, a {
   transform: translateY(2px);
 }
 
+.tedx-link {
+    font-size: 14px;
+    border: solid 2px #8f0c0c;
+    padding: 6px 8px;
+    border-radius: 5px;
+    background-color: #8f0c0c47;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;;
+    display: flex;
+    transition: box-shadow .15s,transform .15s;
+    box-shadow: 1px 1px 3px #8f0c0ca8;
+}
+
+.tedx-link:hover, .tedx-link:focus {
+    box-shadow: 2px 2px 3px #8f0c0c;
+}
+
+.tedx-link:hover {
+  transform: translateY(2px);
+}
+
 
 .bouncy { display: none;}
 
