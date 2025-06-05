@@ -82,13 +82,15 @@ function setViewportHeightUnit() {
 */
 // Texture
 const textureLoader = new THREE.TextureLoader()
-const gradientTexture = textureLoader.load("/gradients/5.jpg")
+const gradientTexture = textureLoader.load("/gradients/5.jpg");
 const sbtTexture = textureLoader.load('/logos/sbt-310x310.png');
 sbtTexture.colorSpace = THREE.SRGBColorSpace
-const camiTexture = textureLoader.load('/logos/cami-app.jpg')
+const camiTexture = textureLoader.load('/logos/cami-app.jpg');
 camiTexture.colorSpace = THREE.SRGBColorSpace
-const tprotTexture = textureLoader.load('/logos/tprototype.jpeg')
+const tprotTexture = textureLoader.load('/logos/tprototype.jpeg');
 tprotTexture.colorSpace = THREE.SRGBColorSpace
+const tedxTexture = textureLoader.load('/logos/tedx.png');
+tedxTexture.colorSpace = THREE.SRGBColorSpace
 
 gradientTexture.colorSpace = THREE.SRGBColorSpace
 gradientTexture.magFilter = THREE.NearestFilter
@@ -123,6 +125,11 @@ const camiMaterial = new THREE.MeshBasicMaterial({
 });
 const tProtMaterial = new THREE.MeshBasicMaterial({
     map: tprotTexture,
+    transparent: true,
+    color: 0xffffff
+});
+const tedxMaterial = new THREE.MeshBasicMaterial({
+    map: tedxTexture,
     transparent: true,
     color: 0xffffff
 });
@@ -182,6 +189,12 @@ const tProtBox = new THREE.Mesh(
     tProtMaterial
 )
 
+// TedX
+const tedxBox = new THREE.Mesh(
+    new THREE.BoxGeometry(3, 3, 3), 
+    tedxMaterial
+)
+
 // Mesh Scaling
 if (sizes.isMobile) {
     mesh1.scale.set(0.03, 0.03, 0.03)
@@ -189,6 +202,7 @@ if (sizes.isMobile) {
     sbtBox.scale.set(0.15, 0.15, 0.15)
     camiBox.scale.set(0.15, 0.15, 0.15)
     tProtBox.scale.set(0.15, 0.15, 0.15)
+    tedxBox.scale.set(0.15, 0.15, 0.15)
 }
 else {
     mesh1.scale.set(0.08, 0.08, 0.08)
@@ -196,6 +210,7 @@ else {
     sbtBox.scale.set(0.4, 0.4, 0.4)
     camiBox.scale.set(0.4, 0.4, 0.4)
     tProtBox.scale.set(0.4, 0.4, 0.4)
+    tedxBox.scale.set(0.4, 0.4, 0.4)
 }
 
 // Mesh Positioning
@@ -203,16 +218,17 @@ mesh1.position.y = sizes.isMobile ? - objectsDistance * 0 - 1.3 : - objectsDista
 mesh2.position.y = sizes.isMobile ? - objectsDistance * 1 - 1.4 : - objectsDistance * 1
 sbtBox.position.y = sizes.isMobile ? - objectsDistance * 3 + 1.5 : - objectsDistance * 3
 camiBox.position.y = sizes.isMobile ? - objectsDistance * 4 + 1.5 : - objectsDistance * 4
-tProtBox.position.y = sizes.isMobile ? - objectsDistance * 5 + 1.5: - objectsDistance * 5
+tProtBox.position.y = sizes.isMobile ? - objectsDistance * 5 + 1.5 : - objectsDistance * 5
+tedxBox.position.y = sizes.isMobile ? - objectsDistance * 6 + 1.5 : - objectsDistance * 6
 
 mesh1.position.x = sizes.isMobile ? 0 : 2
 mesh2.position.x = sizes.isMobile ? 0 : -2
 sbtBox.position.x = sizes.isMobile ? 0 : -2
 camiBox.position.x = sizes.isMobile ? 0 : -2
 tProtBox.position.x = sizes.isMobile ? 0 : -2
+tedxBox.position.x = sizes.isMobile ? 0 : -2
 
-
-const sectionMeshes = [ mesh1, mesh2, fox, sbtBox, camiBox, tProtBox]
+const sectionMeshes = [ mesh1, mesh2, fox, sbtBox, camiBox, tProtBox, tedxBox]
 
 // Fixed top and bottom example:
 // mesh1.position.y = 2
@@ -222,7 +238,7 @@ const sectionMeshes = [ mesh1, mesh2, fox, sbtBox, camiBox, tProtBox]
 // mesh2.position.y = -2
 // mesh2.scale.set(0.1, 0.1, 0.1)
 
-scene.add(mesh1, mesh2, sbtBox, camiBox, tProtBox)
+scene.add(mesh1, mesh2, sbtBox, camiBox, tProtBox, tedxBox)
 
 
 /**
@@ -344,7 +360,6 @@ window.addEventListener('mousemove', (event) => {
  */
 const clock = new THREE.Clock()
 let previousTime = 0
-let sbtPaneRotation = 0
 
 const tick = () =>
 {
